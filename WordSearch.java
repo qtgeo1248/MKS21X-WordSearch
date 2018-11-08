@@ -10,5 +10,11 @@ public class WordSearch {
         }
     }
 
-    
+    private void clear() {
+        for (int m = 0; m < data.length; m++) {
+            for (int n = 0; n < data[n].length; n++) {
+                data[m][n] = '_';
+            }
+        }
+    }
 }
