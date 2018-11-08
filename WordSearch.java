@@ -58,4 +58,10 @@ public class WordSearch {
         }
         return true;
     }
+
+    public boolean addWordDiagonal(String word, int row, int col) {
+        if (data.length - row < word.length() && data[row].length - col < word.length()) {
+            return false;
+        }
+    }
 }
