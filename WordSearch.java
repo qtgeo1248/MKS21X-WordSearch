@@ -1,14 +1,14 @@
 public class WordSearch {
     private char[][] data;
 
-    /**Initialize the grid to the size specified
-     *and fill all of the positions with '_'
-     *@param row is the starting height of the WordSearch
-     *@param col is the starting width of the WordSearch
-     */
-     public WordSearch(int rows, int cols) {
-         data = new char[rows][cols];
-     }
+    public WordSearch(int rows, int cols) {
+        data = new char[rows][cols];
+        for (int m = 0; m < data.length; m++) {
+            for (int n = 0; n < data[n].length; n++) {
+                data[m][n] = '_';
+            }
+        }
+    }
 
-     
+    
 }
