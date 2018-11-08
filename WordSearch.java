@@ -56,5 +56,6 @@ public class WordSearch {
         for (int m = row; m - row < word.length(); m++) {
             data[m][col] = word.charAt(m - row);
         }
+        return true;
     }
 }
