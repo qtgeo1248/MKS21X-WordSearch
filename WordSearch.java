@@ -60,7 +60,7 @@ public class WordSearch {
     }
 
     public boolean addWordDiagonal(String word, int row, int col) {
-        if (data.length - row < word.length() && data[row].length - col < word.length()) {
+        if (data.length - row < word.length() || data[row].length - col < word.length()) {
             return false;
         }
         int n = col;
@@ -76,6 +76,8 @@ public class WordSearch {
         m = row;
         while (m - row < word.length() && n - col < word.length()) {
             data[m][n] = word.charAt(m - row);
+            m++;
+            n++;
         }
         return true;
     }
