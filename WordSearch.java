@@ -33,10 +33,14 @@ public class WordSearch {
         if (data[row].length - col < word.length()) {
             return false;
         }
-        for (int n = col; n < data[row].length; n++) {
+        for (int n = col; n - col < word.length(); n++) {
             if (data[row][n] != '_' && data[row][n] != word.charAt(n - col)) {
                 return false;
             }
         }
+        for (int n = col; n < data[row].length; n++) {
+            data[row][n] = word.charAt(n - col);
+        }
+        return true;
     }
 }
