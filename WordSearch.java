@@ -63,5 +63,20 @@ public class WordSearch {
         if (data.length - row < word.length() && data[row].length - col < word.length()) {
             return false;
         }
+        int n = col;
+        int m = row;
+        while (m - row < word.length() && n - col < word.length()) {
+            if (data[m][n] != '_' && data[m][n] != word.charAt(m - row)) {
+                return false;
+            }
+            m++;
+            n++;
+        }
+        n = col;
+        m = row;
+        while (m - row < word.length() && n - col < word.length()) {
+            data[m][n] = word.charAt(m - row);
+        }
+        return true;
     }
 }
