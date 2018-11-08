@@ -38,7 +38,7 @@ public class WordSearch {
                 return false;
             }
         }
-        for (int n = col; n < data[row].length; n++) {
+        for (int n = col; n - col < word.length(); n++) {
             data[row][n] = word.charAt(n - col);
         }
         return true;
@@ -53,5 +53,6 @@ public class WordSearch {
                 return false;
             }
         }
+        for (int m = row; m <)
     }
 }
