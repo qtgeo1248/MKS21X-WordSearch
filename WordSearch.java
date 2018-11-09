@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 
 public class WordSearch {
     private char[][] data;
+    private int seed;
+    private Random randgen;
+    private ArrayList<String> wordsToAdd;
+    private ArrayList<String> wordsAdded;
 
     public WordSearch(int rows, int cols) {
         data = new char[rows][cols];
