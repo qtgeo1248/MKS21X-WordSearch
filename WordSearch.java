@@ -11,12 +11,24 @@ public class WordSearch {
     private ArrayList<String> wordsToAdd;
     private ArrayList<String> wordsAdded;
 
-    public WordSearch(int rows, int cols) {
+    public WordSearch(int rows, int cols, String fileName) {
         data = new char[rows][cols];
         for (int m = 0; m < data.length; m++) {
             for (int n = 0; n < data[m].length; n++) {
                 data[m][n] = '_';
             }
+        }
+        randgen = new Random();
+        try {
+            File f = new File(fileName);
+            Scanner in = new Scanner(f);
+            while(in.hasNext()) {
+                String word = in.nextLine();
+                wordsToAdd.add(word);
+            }
+        } catch(FileNotFoundException e) {
+            System.out.println("File not found: " + fileName);
+            System.exit(1);
         }
     }
 
