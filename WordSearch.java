@@ -30,6 +30,7 @@ public class WordSearch {
             System.out.println("File not found: " + fileName);
             System.exit(1);
         }
+        //addAllWords();
     }
 
     private void clear() {
