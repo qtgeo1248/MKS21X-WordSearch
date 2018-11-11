@@ -122,6 +122,7 @@ public class WordSearch {
                         wordsAdded.add(word);
                     }
                 }
+                wordsToAdd.remove(word);
             }
         }
     }
