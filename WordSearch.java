@@ -70,7 +70,7 @@ public class WordSearch {
         for (int idx = 0; idx < wordsToAdd.size() - 1; idx++) { //need to change to wordsAdded later
             words += wordsToAdd.get(idx) + ", "; //need to change to wordsAdded later
         }
-        return grid + words + wordsToAdd.get(wordsToAdd.size() - 1); // need to change to wordsAdded later
+        return grid + words + wordsToAdd.get(wordsToAdd.size() - 1); //need to change to wordsAdded later
     }
 
     public boolean addWordHorizontal(String word, int row, int col) {
@@ -124,5 +124,15 @@ public class WordSearch {
             n++;
         }
         return true;
+    }
+
+    public boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) { //change to private later
+        if (rowIncrement == 0 && colIncrement == 0) {
+            return false;
+        }
+        if (row + rowIncrement * word.length() <= 0 || row + rowIncrement * word.length() > data.length ||
+            col + colIncrement * word.length() <= 0 || col + colIncrement * word.length() > data[0].length) {
+            return false;
+        }
     }
 }
