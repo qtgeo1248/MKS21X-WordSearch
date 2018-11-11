@@ -84,8 +84,8 @@ public class WordSearch {
         int m = row;
         int n = col;
         int idx = 0;
-        while (Math.abs(row - m) < word.length() && Math.abs(col - n) < word.length()) {
-            if (data[m][n] != '_' && data[m][n] != word.charAt(idx) {
+        while (idx < word.length()) {
+            if (data[m][n] != '_' && data[m][n] != word.charAt(idx)) {
                 return false;
             }
             m += rowIncrement;
@@ -95,7 +95,7 @@ public class WordSearch {
         m = row;
         n = col;
         idx = 0;
-        while (idx < word.length() && idx < word.length()) {
+        while (idx < word.length()) {
             data[m][n] = word.charAt(idx);
             m += rowIncrement;
             n += colIncrement;
@@ -107,12 +107,12 @@ public class WordSearch {
     private void addAllWords() {
         wordsAdded = new ArrayList<String>();
         for (int wordIdx = 0; wordIdx < wordsToAdd.size(); wordIdx++) {
-            for (int trial0 = 1; trial0 < 100 && !isDon; trial0++) {
+            boolean isDone = false;
+            for (int trial0 = 1; trial0 < 100 && !isDone; trial0++) {
                 String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
                 int rowIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
                 int colIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
-                boolean isDone = false;
-                for (int trial1 = 1; trial < 100 && !isDone; trial++) {
+                for (int trial1 = 1; trial1 < 100 && !isDone; trial1++) {
                     int row = Math.abs(randgen.nextInt() % data.length);
                     int col = Math.abs(randgen.nextInt() % data[0].length);
                     System.out.println("" + row + " " + col + " " + rowIncrement + " " + colIncrement);
