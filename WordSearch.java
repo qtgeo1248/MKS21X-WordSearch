@@ -13,6 +13,7 @@ public class WordSearch {
 
     public WordSearch(int rows, int cols, String fileName) {
         data = new char[rows][cols];
+        wordsToAdd = new ArrayList<String>();
         for (int m = 0; m < data.length; m++) {
             for (int n = 0; n < data[m].length; n++) {
                 data[m][n] = '_';
@@ -22,9 +23,9 @@ public class WordSearch {
         try {
             File f = new File(fileName);
             Scanner in = new Scanner(f);
-            while(in.hasNext()) {
-                String word = in.nextLine();
-                wordsToAdd.add(word);
+            while (in.hasNext()) {
+                String word = in.next();
+                wordsToAdd.add(word.toUpperCase());
             }
         } catch(FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
@@ -42,8 +43,9 @@ public class WordSearch {
     }
 
     public String toString() {
-        String grid = "|";
+        String grid = "";
         for (int m = 0; m < data.length; m++) {
+            grid += "|";
             for (int n = 0; n < data[m].length - 1; n++) {
                 grid += data[m][n] + " ";
             }
