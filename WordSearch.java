@@ -20,7 +20,7 @@ public class WordSearch {
         }
     }
 
-    private void setWords(String fileName) throws FileNotFoundException {
+    private void setWords(String fileName) {
         try {
             File f = new File(fileName);
             Scanner in = new Scanner(f);
@@ -33,17 +33,20 @@ public class WordSearch {
             System.exit(1);
         }
     }
+
     public WordSearch(int rows, int cols, String fileName) {
         wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
         setWords(fileName);
+        randgen = new Random();
         //addAllWords();
     }
 
     public WordSearch(int rows, int cols, String fileName, int randSeed) {
         setData(rows, cols);
-        setWords(fileName)
+        setWords(fileName);
         randgen = new Random(randSeed);
+        //addAllWords();
     }
 
     private void clear() {
