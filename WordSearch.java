@@ -131,8 +131,8 @@ public class WordSearch {
         if (rowIncrement == 0 && colIncrement == 0) {
             return false;
         }
-        if (row + rowIncrement * word.length() <= 0 || row + rowIncrement * word.length() > data.length ||
-            col + colIncrement * word.length() <= 0 || col + colIncrement * word.length() > data[0].length) {
+        if (row + rowIncrement * word.length() < 0 || row + rowIncrement * word.length() > data.length ||
+            col + colIncrement * word.length() < 0 || col + colIncrement * word.length() > data[0].length) {
             return false;
         }
         int m = row;
