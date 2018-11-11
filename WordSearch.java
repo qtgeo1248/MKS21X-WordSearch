@@ -11,15 +11,16 @@ public class WordSearch {
     private ArrayList<String> wordsToAdd;
     private ArrayList<String> wordsAdded;
 
-    public WordSearch(int rows, int cols, String fileName) {
+    private void setData(int rows, int cols) {
         data = new char[rows][cols];
-        wordsToAdd = new ArrayList<String>();
         for (int m = 0; m < data.length; m++) {
             for (int n = 0; n < data[m].length; n++) {
                 data[m][n] = '_';
             }
         }
-        randgen = new Random();
+    }
+
+    private void setWords(String fileName) throws FileNotFoundException {
         try {
             File f = new File(fileName);
             Scanner in = new Scanner(f);
@@ -27,11 +28,22 @@ public class WordSearch {
                 String word = in.next();
                 wordsToAdd.add(word.toUpperCase());
             }
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
             System.exit(1);
         }
+    }
+    public WordSearch(int rows, int cols, String fileName) {
+        wordsToAdd = new ArrayList<String>();
+        setData(rows, cols);
+        setWords(fileName);
         //addAllWords();
+    }
+
+    public WordSearch(int rows, int cols, String fileName, int randSeed) {
+        setData(rows, cols);
+        setWords(fileName)
+        randgen = new Random(randSeed);
     }
 
     private void clear() {
