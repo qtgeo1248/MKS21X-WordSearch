@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Math;
+import java.lang.Math;
 import java.io.File;
 import java.io.FileNotFoundException;
 
