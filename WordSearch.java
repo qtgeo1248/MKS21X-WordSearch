@@ -17,14 +17,14 @@ public class WordSearch {
         setData(rows, cols);
         setWords(fileName);
         randgen = new Random();
-        //addAllWords();
+        addAllWords();
     }
 
     public WordSearch(int rows, int cols, String fileName, int randSeed) {
         setData(rows, cols);
         setWords(fileName);
         randgen = new Random(randSeed);
-        //addAllWords();
+        addAllWords();
     }
     private void setData(int rows, int cols) {
         data = new char[rows][cols];
@@ -101,15 +101,18 @@ public class WordSearch {
     }
 
     private void addAllWords() {
+        wordsAdded = new ArrayList<String>();
         for (int wordIdx = 0; wordIdx < wordsToAdd.size(); wordIdx++) {
             String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
-            int rowIncrement = randgen.nextInt() % 3 - 1;
-            int colIncrement = randgen.nextInt() % 3 - 1;
+            int rowIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
+            int colIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
             boolean isDone = false;
             for (int trial = 1; trial < 550 && !isDone; trial++) {
-                int row = randgen.nextInt() % data.length;
-                int col = randgen.nextInt() & data[0].length;
-                if (!addWord(word, row, col, rowIncrement, colIncrement)) {
+                int row = Math.abs(randgen.nextInt() % data.length);
+                int col = Math.abs(randgen.nextInt() & data[0].length);
+                boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
+                System.out.println("" + row + " " + col);
+                if (isAdded) {
                     isDone = true;
                     wordsAdded.add(word);
                 }
