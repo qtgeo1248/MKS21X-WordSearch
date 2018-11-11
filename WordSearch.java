@@ -42,14 +42,18 @@ public class WordSearch {
     }
 
     public String toString() {
-        String grid = "";
+        String grid = "|";
         for (int m = 0; m < data.length; m++) {
             for (int n = 0; n < data[m].length - 1; n++) {
                 grid += data[m][n] + " ";
             }
-            grid += data[m][data[m].length - 1] + "\n";
+            grid += data[m][data[m].length - 1] + "|\n";
         }
-        return grid;
+        String words = "Words: ";
+        for (int idx = 0; idx < wordsToAdd.size() - 1; idx++) { //need to change to wordsAdded later
+            words += wordsToAdd.get(idx) + ", "; //need to change to wordsAdded later
+        }
+        return grid + words + wordsToAdd.get(wordsToAdd.size() - 1); // need to change to wordsAdded later
     }
 
     public boolean addWordHorizontal(String word, int row, int col) {
