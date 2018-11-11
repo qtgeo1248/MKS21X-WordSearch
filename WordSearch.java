@@ -105,6 +105,15 @@ public class WordSearch {
             String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
             int rowIncrement = randgen.nextInt() % 3 - 1;
             int colIncrement = randgen.nextInt() % 3 - 1;
+            boolean isDone = false;
+            for (int trial = 1; trial < 550 && !isDone; trial++) {
+                int row = randgen.nextInt() % data.length;
+                int col = randgen.nextInt() & data[0].length;
+                if (!addWord(word, row, col, rowIncrement, colIncrement)) {
+                    isDone = true;
+                    wordsAdded.add(word);
+                }
+            }
         }
     }
 }
