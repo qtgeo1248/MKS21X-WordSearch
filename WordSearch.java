@@ -83,19 +83,23 @@ public class WordSearch {
         }
         int m = row;
         int n = col;
+        int idx = 0;
         while (Math.abs(row - m) < word.length() && Math.abs(col - n) < word.length()) {
-            if (data[m][n] != '_' && data[m][n] != word.charAt(Math.abs(m - row))) {
+            if (data[m][n] != '_' && data[m][n] != word.charAt(idx) {
                 return false;
             }
             m += rowIncrement;
             n += colIncrement;
+            idx++;
         }
         m = row;
         n = col;
-        while (Math.abs(row - m) < word.length() && Math.abs(col - n) < word.length()) {
-            data[m][n] = word.charAt(Math.abs(m - row));
+        idx = 0;
+        while (idx < word.length() && idx < word.length()) {
+            data[m][n] = word.charAt(idx);
             m += rowIncrement;
             n += colIncrement;
+            idx++;
         }
         return true;
     }
@@ -103,18 +107,20 @@ public class WordSearch {
     private void addAllWords() {
         wordsAdded = new ArrayList<String>();
         for (int wordIdx = 0; wordIdx < wordsToAdd.size(); wordIdx++) {
-            String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
-            int rowIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
-            int colIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
-            boolean isDone = false;
-            for (int trial = 1; trial < 550 && !isDone; trial++) {
-                int row = Math.abs(randgen.nextInt() % data.length);
-                int col = Math.abs(randgen.nextInt() & data[0].length);
-                boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
-                System.out.println("" + row + " " + col);
-                if (isAdded) {
-                    isDone = true;
-                    wordsAdded.add(word);
+            for (int trial0 = 1; trial0 < 100 && !isDon; trial0++) {
+                String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
+                int rowIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
+                int colIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
+                boolean isDone = false;
+                for (int trial1 = 1; trial < 100 && !isDone; trial++) {
+                    int row = Math.abs(randgen.nextInt() % data.length);
+                    int col = Math.abs(randgen.nextInt() % data[0].length);
+                    System.out.println("" + row + " " + col + " " + rowIncrement + " " + colIncrement);
+                    boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
+                    if (isAdded) {
+                        isDone = true;
+                        wordsAdded.add(word);
+                    }
                 }
             }
         }
