@@ -134,5 +134,6 @@ public class WordSearch {
             col + colIncrement * word.length() <= 0 || col + colIncrement * word.length() > data[0].length) {
             return false;
         }
+        return true;
     }
 }
