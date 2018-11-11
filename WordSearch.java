@@ -144,6 +144,13 @@ public class WordSearch {
             m += rowIncrement;
             n += colIncrement;
         }
+        m = row;
+        n = col;
+        while (Math.abs(row - m) < word.length() && Math.abs(col - n) < word.length()) {
+            data[m][n] = word.charAt(Math.abs(m - row));
+            m += rowIncrement;
+            n += colIncrement;
+        }
         return true;
     }
 }
