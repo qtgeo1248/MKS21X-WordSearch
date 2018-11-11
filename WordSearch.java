@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Math;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -133,6 +134,15 @@ public class WordSearch {
         if (row + rowIncrement * word.length() <= 0 || row + rowIncrement * word.length() > data.length ||
             col + colIncrement * word.length() <= 0 || col + colIncrement * word.length() > data[0].length) {
             return false;
+        }
+        int m = row;
+        int n = col;
+        while (Math.abs(row - m) < word.length() && Math.abs(col - n) < word.length()) {
+            if (data[m][n] != '_' && data[m][n] != word.charAt(Math.abs(m - row))) {
+                return false;
+            }
+            m += rowIncrement;
+            n += colIncrement;
         }
         return true;
     }
