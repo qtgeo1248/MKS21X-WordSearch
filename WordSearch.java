@@ -21,6 +21,7 @@ public class WordSearch {
     }
 
     public WordSearch(int rows, int cols, String fileName, int randSeed) {
+        wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
         setWords(fileName);
         randgen = new Random(randSeed);
