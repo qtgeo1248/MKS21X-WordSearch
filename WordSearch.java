@@ -58,7 +58,7 @@ public class WordSearch {
         }
     }
 
-    public String toString() {
+    public String toString() { //REMEMBER SEED
         String grid = "";
         for (int m = 0; m < data.length; m++) {
             grid += "|";
@@ -111,8 +111,9 @@ public class WordSearch {
             boolean isDone = false;
             for (int trial0 = 1; trial0 < 100 && !isDone; trial0++) {
                 String word = wordsToAdd.get(Math.abs(randgen.nextInt()) % wordsToAdd.size());
-                int rowIncrement = randgen.nextInt() % 2;
-                int colIncrement = randgen.nextInt() % 2;
+                int caseNum = randgen.nextInt();
+                int rowIncrement = caseNum / 3 - 1;
+                int colIncrement = caseNum % 3;
                 for (int trial1 = 1; trial1 < 100 && !isDone; trial1++) {
                     int offSetRow = 0;
                     int offSetCol = 0;
