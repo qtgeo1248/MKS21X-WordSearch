@@ -111,12 +111,20 @@ public class WordSearch {
             boolean isDone = false;
             for (int trial0 = 1; trial0 < 100 && !isDone; trial0++) {
                 String word = wordsToAdd.get(Math.abs(randgen.nextInt()) % wordsToAdd.size());
-                int rowIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
-                int colIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
+                int rowIncrement = randgen.nextInt() % 2;
+                int colIncrement = randgen.nextInt() % 2;
                 for (int trial1 = 1; trial1 < 100 && !isDone; trial1++) {
-                    int row = Math.abs(randgen.nextInt() % data.length);
-                    int col = Math.abs(randgen.nextInt() % data[0].length);
-                    //System.out.println("" + row + " " + col + " " + rowIncrement + " " + colIncrement);
+                    int offSetRow = 0;
+                    int offSetCol = 0;
+                    if (rowIncrement < 0) {
+                        offSetRow = word.length() - 1;
+                    }
+                    if (colIncrement < 0) {
+                        offSetCol = word.length() - 1;
+                    }
+                    int row = Math.abs(randgen.nextInt()) % (data.length - Math.abs(rowIncrement) * (word.length() - 1)) + offSetRow;
+                    int col = Math.abs(randgen.nextInt()) % (data[0].length - Math.abs(colIncrement) * (word.length() - 1)) + offSetCol;
+                    System.out.println(row + " " + rowIncrement + " "+ col + " " + colIncrement + " " + word);
                     boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
                     if (isAdded) {
                         isDone = true;
