@@ -113,7 +113,7 @@ public class WordSearch {
                 String word = wordsToAdd.get(Math.abs(randgen.nextInt()) % wordsToAdd.size());
                 int caseNum = Math.abs(randgen.nextInt()) % 8;
                 int rowIncrement = ((caseNum / 3) + 2) % 3 - 1;
-                int colIncrement = caseNum % 3;
+                int colIncrement = ((caseNum % 3) + 2) % 3 - 1;
                 for (int trial1 = 1; trial1 < 100 && !isDone; trial1++) {
                     int offSetRow = 0;
                     int offSetCol = 0;
@@ -125,7 +125,6 @@ public class WordSearch {
                     }
                     int row = Math.abs(randgen.nextInt()) % (data.length - Math.abs(rowIncrement) * (word.length() - 1)) + offSetRow;
                     int col = Math.abs(randgen.nextInt()) % (data[0].length - Math.abs(colIncrement) * (word.length() - 1)) + offSetCol;
-                    System.out.println(row + " " + rowIncrement + " "+ col + " " + colIncrement + " " + word);
                     boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
                     if (isAdded) {
                         isDone = true;
