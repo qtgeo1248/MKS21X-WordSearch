@@ -67,13 +67,13 @@ public class WordSearch {
             grid += data[m][data[m].length - 1] + "|\n";
         }
         String words = "Words: ";
-        for (int idx = 0; idx < wordsToAdd.size() - 1; idx++) { //need to change to wordsAdded later
-            words += wordsToAdd.get(idx) + ", "; //need to change to wordsAdded later
+        for (int idx = 0; idx < wordsAdded.size() - 1; idx++) {
+            words += wordsAdded.get(idx) + ", ";
         }
-        return grid + words + wordsToAdd.get(wordsToAdd.size() - 1); //need to change to wordsAdded later
+        return grid + words + wordsAdded.get(wordsAdded.size() - 1);
     }
 
-    private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) { //change to private later
+    private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
         if (rowIncrement == 0 && colIncrement == 0) {
             return false;
         }
@@ -109,20 +109,21 @@ public class WordSearch {
         for (int wordIdx = 0; wordIdx < wordsToAdd.size(); wordIdx++) {
             boolean isDone = false;
             for (int trial0 = 1; trial0 < 100 && !isDone; trial0++) {
-                String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
+                String word = wordsToAdd.get(Math.abs(randgen.nextInt()) % wordsToAdd.size());
                 int rowIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
                 int colIncrement = Math.abs(randgen.nextInt()) % 3 - 1;
                 for (int trial1 = 1; trial1 < 100 && !isDone; trial1++) {
                     int row = Math.abs(randgen.nextInt() % data.length);
                     int col = Math.abs(randgen.nextInt() % data[0].length);
-                    System.out.println("" + row + " " + col + " " + rowIncrement + " " + colIncrement);
+                    //System.out.println("" + row + " " + col + " " + rowIncrement + " " + colIncrement);
                     boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
                     if (isAdded) {
                         isDone = true;
                         wordsAdded.add(word);
+                        wordsToAdd.remove(word);
+                        wordIdx--;
                     }
                 }
-                wordsToAdd.remove(word);
             }
         }
     }
