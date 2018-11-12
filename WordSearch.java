@@ -42,7 +42,9 @@ public class WordSearch {
             Scanner in = new Scanner(f);
             while (in.hasNext()) {
                 String word = in.next();
-                wordsToAdd.add(word.toUpperCase());
+                if (word.length() <= data.length || word.length() <= data[0].length) {
+                    wordsToAdd.add(word.toUpperCase());
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
@@ -115,22 +117,26 @@ public class WordSearch {
                 int rowIncrement = ((caseNum / 3) + 2) % 3 - 1;
                 int colIncrement = ((caseNum % 3) + 2) % 3 - 1;
                 for (int trial1 = 1; trial1 < 100 && !isDone; trial1++) {
-                    int offSetRow = 0;
-                    int offSetCol = 0;
-                    if (rowIncrement < 0) {
-                        offSetRow = word.length() - 1;
-                    }
-                    if (colIncrement < 0) {
-                        offSetCol = word.length() - 1;
-                    }
-                    int row = Math.abs(randgen.nextInt()) % (data.length - Math.abs(rowIncrement) * (word.length() - 1)) + offSetRow;
-                    int col = Math.abs(randgen.nextInt()) % (data[0].length - Math.abs(colIncrement) * (word.length() - 1)) + offSetCol;
-                    boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
-                    if (isAdded) {
-                        isDone = true;
-                        wordsAdded.add(word);
-                        wordsToAdd.remove(word);
-                        wordIdx--;
+                    if (Math.abs(word.length() * rowIncrement) <= data.length && Math.abs(word.length() * colIncrement) <= data[0].length) {
+                        int offSetRow = 0;
+                        int offSetCol = 0;
+                        if (rowIncrement < 0) {
+                            offSetRow = word.length() - 1;
+                        }
+                        if (colIncrement < 0) {
+                            offSetCol = word.length() - 1;
+                        }
+                        int row = Math.abs(randgen.nextInt()) % (data.length - Math.abs(rowIncrement) * (word.length() - 1)) + offSetRow;
+                        int col = Math.abs(randgen.nextInt()) % (data[0].length - Math.abs(colIncrement) * (word.length() - 1)) + offSetCol;
+                        boolean isAdded = addWord(word, row, col, rowIncrement, colIncrement);
+                        if (isAdded) {
+                            isDone = true;
+                            wordsAdded.add(word);
+                            wordsToAdd.remove(word);
+                            wordIdx--;
+                        }
+                    } else {
+                        trial1 = 100;
                     }
                 }
             }
