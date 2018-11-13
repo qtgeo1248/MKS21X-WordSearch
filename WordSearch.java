@@ -114,7 +114,7 @@ public class WordSearch {
             for (int trial0 = 1; trial0 < 100 && !isDone; trial0++) {
                 String word = wordsToAdd.get(Math.abs(randgen.nextInt()) % wordsToAdd.size());
                 int caseNum = Math.abs(randgen.nextInt()) % 8;
-                int rowIncrement = ((caseNum / 3) + 2) % 3 - 1;
+                int rowIncrement = ((caseNum / 3) + 2) % 3 - 1; //I think this is super cool {0,1,2} -> {2,3,4} -> {2,0,1} -> {1,-1,0}
                 int colIncrement = ((caseNum % 3) + 2) % 3 - 1;
                 for (int trial1 = 1; trial1 < 100 && !isDone; trial1++) {
                     if (Math.abs(word.length() * rowIncrement) <= data.length && Math.abs(word.length() * colIncrement) <= data[0].length) {
