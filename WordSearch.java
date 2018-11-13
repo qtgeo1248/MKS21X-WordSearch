@@ -15,7 +15,11 @@ public class WordSearch {
     public WordSearch(int rows, int cols, String fileName) {
         wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
-        setWords(fileName);
+        try {
+            setWords(fileName);
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException();
+        }
         randgen = new Random();
         addAllWords();
     }
@@ -23,7 +27,11 @@ public class WordSearch {
     public WordSearch(int rows, int cols, String fileName, int randSeed) {
         wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
-        setWords(fileName);
+        try {
+            setWords(fileName);
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException();
+        }
         randgen = new Random(randSeed);
         addAllWords();
     }
@@ -36,19 +44,14 @@ public class WordSearch {
         }
     }
 
-    private void setWords(String fileName) {
-        try {
-            File f = new File(fileName);
-            Scanner in = new Scanner(f);
-            while (in.hasNext()) {
-                String word = in.next();
-                if (word.length() <= data.length || word.length() <= data[0].length) {
-                    wordsToAdd.add(word.toUpperCase());
-                }
+    private void setWords(String fileName) throws FileNotFoundException {
+        File f = new File(fileName);
+        Scanner in = new Scanner(f);
+        while (in.hasNext()) {
+            String word = in.next();
+            if (word.length() <= data.length || word.length() <= data[0].length) {
+                wordsToAdd.add(word.toUpperCase());
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + fileName);
-            System.exit(1);
         }
     }
 
