@@ -11,18 +11,7 @@ public class WordSearch {
     private Random randgen;
     private ArrayList<String> wordsToAdd;
     private ArrayList<String> wordsAdded;
-    private char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M',
-                               'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 
-    public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
-        wordsToAdd = new ArrayList<String>();
-        setData(rows, cols);
-        setWords(fileName);
-        Random rng = new Random();
-        seed = Math.abs(rng.nextInt()) % 100000;
-        randgen = new Random(seed);
-        addAllWords();
-    }
     public WordSearch(int rows, int cols, String fileName, int randSeed) throws FileNotFoundException {
         wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
@@ -204,7 +193,9 @@ public class WordSearch {
             try {
                 rows = Integer.parseInt(args[0]);
                 cols = Integer.parseInt(args[1]);
-                puzzle = new WordSearch(rows, cols, args[2]);
+                Random rng = new Random();
+                int randSeed = Math.abs(rng.nextInt()) % 10000;
+                puzzle = new WordSearch(rows, cols, args[2], randSeed);
                 System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
                 print2ArgsIntErr();
