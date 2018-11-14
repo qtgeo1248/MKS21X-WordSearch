@@ -12,27 +12,19 @@ public class WordSearch {
     private ArrayList<String> wordsToAdd;
     private ArrayList<String> wordsAdded;
 
-    public WordSearch(int rows, int cols, String fileName) {
+    public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
         wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
-        try {
-            setWords(fileName);
-        } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException();
-        }
+        setWords(fileName);
         Random rng = new Random();
         seed = rng.nextInt() % 100000;
         randgen = new Random(seed);
         addAllWords();
     }
-    public WordSearch(int rows, int cols, String fileName, int randSeed) {
+    public WordSearch(int rows, int cols, String fileName, int randSeed) throws FileNotFoundException {
         wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
-        try {
-            setWords(fileName);
-        } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException();
-        }
+        setWords(fileName);
         seed = randSeed;
         randgen = new Random(seed);
         addAllWords();
@@ -156,7 +148,7 @@ public class WordSearch {
         System.out.println("immediately after \"java Driver\"");
         System.out.println("It is optional to put a seed after it, and it is");
         System.out.println("also optional to put a seed and the word \"key\"");
-        System.out.println("if you want a certain puzzle");
+        System.out.println("if you want a certain puzzle solution");
         System.out.println();
         System.out.println("Ex: java Driver 9 9 words.txt");
     }
