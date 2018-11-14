@@ -21,8 +21,8 @@ public class WordSearch {
             throw new IllegalArgumentException();
         }
         Random rng = new Random();
-        int randSeed = rng.nextInt();
-        randgen = new Random();
+        seed = rng.nextInt() % 100000;
+        randgen = new Random(seed);
         addAllWords();
     }
     public WordSearch(int rows, int cols, String fileName, int randSeed) {
@@ -33,7 +33,8 @@ public class WordSearch {
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException();
         }
-        randgen = new Random(randSeed);
+        seed = randSeed;
+        randgen = new Random(seed);
         addAllWords();
     }
 
@@ -78,7 +79,7 @@ public class WordSearch {
         for (int idx = 0; idx < wordsAdded.size() - 1; idx++) {
             words += wordsAdded.get(idx) + ", ";
         }
-        return grid + words + wordsAdded.get(wordsAdded.size() - 1);
+        return grid + words + wordsAdded.get(wordsAdded.size() - 1) + "(seed: " + seed + ")"''
     }
 
     private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
