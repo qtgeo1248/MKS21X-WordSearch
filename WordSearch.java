@@ -188,6 +188,9 @@ public class WordSearch {
             } catch (FileNotFoundException e) {
                 printInstructions();
                 System.exit(1);
+            } catch (NegativeArraySizeException e) {
+                printInstructions();
+                System.exit(1);
             }
         } else if (args.length == 4) {
             try {
@@ -202,6 +205,9 @@ public class WordSearch {
             } catch (FileNotFoundException e) {
                 printInstructions();
                 System.exit(1);
+            } catch (NegativeArraySizeException e) {
+                printInstructions();
+                System.exit(1);
             }
         } else if (args.length == 5 && args[4].equals("key")) {
             try {
@@ -214,6 +220,9 @@ public class WordSearch {
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
+                printInstructions();
+                System.exit(1);
+            } catch (NegativeArraySizeException e) {
                 printInstructions();
                 System.exit(1);
             }
