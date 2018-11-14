@@ -19,7 +19,7 @@ public class WordSearch {
         setData(rows, cols);
         setWords(fileName);
         Random rng = new Random();
-        seed = rng.nextInt() % 100000;
+        seed = Math.abs(rng.nextInt()) % 100000;
         randgen = new Random(seed);
         addAllWords();
     }
@@ -79,7 +79,7 @@ public class WordSearch {
                 if (isKey) {
                     grid += " |\n";
                 } else {
-                    grid += alphabet[Math.abs(randgen.nextInt()) & 26] + "|\n";
+                    grid += alphabet[Math.abs(randgen.nextInt()) % 26] + "|\n";
                 }
             } else {
                 grid += data[m][data[m].length - 1] + "|\n";
@@ -89,7 +89,7 @@ public class WordSearch {
         for (int idx = 0; idx < wordsAdded.size() - 1; idx++) {
             words += wordsAdded.get(idx) + ", ";
         }
-        return grid + words + wordsAdded.get(wordsAdded.size() - 1) + "(seed: " + seed + ")";
+        return grid + words + wordsAdded.get(wordsAdded.size() - 1) + " (seed: " + seed + ")";
     }
 
     private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
@@ -175,6 +175,7 @@ public class WordSearch {
     public static void main(String[] args) {
         int rows;
         int cols;
+        WordSearch puzzle;
 
         if (args.length <= 2) {
             System.out.println("ERROR: You inputted an incorrect number of arguments");
@@ -185,6 +186,8 @@ public class WordSearch {
             try {
                 rows = Integer.parseInt(args[0]);
                 cols = Integer.parseInt(args[1]);
+                puzzle = new WordSearch(rows, cols, args[2]);
+                System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
                 System.out.println("ERROR: First two arguments have to be the numbers");
                 System.out.println();
