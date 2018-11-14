@@ -75,7 +75,15 @@ public class WordSearch {
                     grid += data[m][n] + " ";
                 }
             }
-            grid += data[m][data[m].length - 1] + "|\n";
+            if (data[m][data[m].length - 1] == '_') {
+                if (isKey) {
+                    grid += " |\n";
+                } else {
+                    grid += alphabet[Math.abs(randgen.nextInt()) & 26] + "|\n";
+                }
+            } else {
+                grid += data[m][data[m].length - 1] + "|\n";
+            }
         }
         String words = "Words: ";
         for (int idx = 0; idx < wordsAdded.size() - 1; idx++) {
@@ -179,6 +187,12 @@ public class WordSearch {
                 cols = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
                 System.out.println("ERROR: First two arguments have to be the numbers");
+                System.out.println();
+                printInstructions();
+                System.exit(1);
+            } catch (FileNotFoundException e) {
+                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly");
+                System.out.println("ERROR: Make sure the file exists");
                 System.out.println();
                 printInstructions();
                 System.exit(1);
