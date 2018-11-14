@@ -11,6 +11,8 @@ public class WordSearch {
     private Random randgen;
     private ArrayList<String> wordsToAdd;
     private ArrayList<String> wordsAdded;
+    private char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M',
+                               'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 
     public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
         wordsToAdd = new ArrayList<String>();
@@ -58,12 +60,20 @@ public class WordSearch {
         }
     }
 
-    public String toString() {
+    public String toString(boolean isKey) {
         String grid = "";
         for (int m = 0; m < data.length; m++) {
             grid += "|";
             for (int n = 0; n < data[m].length - 1; n++) {
-                grid += data[m][n] + " ";
+                if (data[m][n] == '_') {
+                    if (isKey) {
+                        grid += "  ";
+                    } else {
+                        grid += alphabet[Math.abs(randgen.nextInt()) % 26] + " ";
+                    }
+                } else {
+                    grid += data[m][n] + " ";
+                }
             }
             grid += data[m][data[m].length - 1] + "|\n";
         }
@@ -159,7 +169,7 @@ public class WordSearch {
         int cols;
 
         if (args.length <= 2) {
-            System.out.println("You inputted an incorrect number of arguments");
+            System.out.println("ERROR: You inputted an incorrect number of arguments");
             System.out.println();
             printInstructions();
             System.exit(1);
@@ -168,7 +178,7 @@ public class WordSearch {
                 rows = Integer.parseInt(args[0]);
                 cols = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
-                System.out.println("First two arguments have to be the numbers");
+                System.out.println("ERROR: First two arguments have to be the numbers");
                 System.out.println();
                 printInstructions();
                 System.exit(1);
