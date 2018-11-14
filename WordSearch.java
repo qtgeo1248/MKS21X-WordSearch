@@ -89,7 +89,10 @@ public class WordSearch {
         for (int idx = 0; idx < wordsAdded.size() - 1; idx++) {
             words += wordsAdded.get(idx) + ", ";
         }
-        return grid + words + wordsAdded.get(wordsAdded.size() - 1) + " (seed: " + seed + ")";
+        if (wordsAdded.size() > 0) {
+            words += wordsAdded.get(wordsAdded.size() - 1);
+        }
+        return grid + words + " (seed: " + seed + ")";
     }
 
     private boolean addWord(String word, int row, int col, int rowIncrement, int colIncrement) {
