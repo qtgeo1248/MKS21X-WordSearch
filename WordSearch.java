@@ -170,7 +170,7 @@ public class WordSearch {
         System.out.println("It is also optional to put a seed and the word \"key\"");
         System.out.println("if you want a certain puzzle's solution.");
         System.out.println();
-        System.out.println("Ex: java Driver 9 9 words.txt");
+        System.out.println("Ex: java Driver 10 10 words.txt");
     }
     public static void main(String[] args) {
         int rows;
