@@ -69,7 +69,7 @@ public class WordSearch {
                     if (isKey) {
                         grid += "  ";
                     } else {
-                        grid += alphabet[Math.abs(randgen.nextInt()) % 26] + " ";
+                        grid += (char)('A' + Math.abs(randgen.nextInt()) % 26) + " ";
                     }
                 } else {
                     grid += data[m][n] + " ";
@@ -79,7 +79,7 @@ public class WordSearch {
                 if (isKey) {
                     grid += " |\n";
                 } else {
-                    grid += alphabet[Math.abs(randgen.nextInt()) % 26] + "|\n";
+                    grid += (char)('A' + Math.abs(randgen.nextInt()) % 26) + "|\n";
                 }
             } else {
                 grid += data[m][data[m].length - 1] + "|\n";
