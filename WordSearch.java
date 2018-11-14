@@ -172,6 +172,20 @@ public class WordSearch {
         System.out.println();
         System.out.println("Ex: java Driver 10 10 words.txt");
     }
+    public static void print2ArgsIntErr() {
+        System.out.println("\nERROR: First two arguments have to be the integers");
+        System.out.println("specifying number of rows and columns\n");
+    }
+    public static void printFileErr() {
+        System.out.println("\nERROR: File not found; could be in a different folder or spelled incorrectly.");
+        System.out.println("Make sure the file exists.\n");
+    }
+    public static void printAllIntErr() {
+        System.out.println("\nERROR: First two arguments have to be the integers");
+        System.out.println("specifying number of rows and columns.");
+        System.out.println("And the last argument has to be an integer");
+        System.out.println("specifying the seed of the puzzle.\n");
+    }
     public static void main(String[] args) {
         int rows;
         int cols;
@@ -190,15 +204,11 @@ public class WordSearch {
                 puzzle = new WordSearch(rows, cols, args[2]);
                 System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
-                System.out.println("ERROR: First two arguments have to be the integers");
-                System.out.println("specifying number of rows and columns");
-                System.out.println();
+                print2ArgsIntErr();
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
-                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly.");
-                System.out.println("Make sure the file exists.");
-                System.out.println();
+                printFileErr();
                 printInstructions();
                 System.exit(1);
             }
@@ -210,17 +220,11 @@ public class WordSearch {
                 puzzle = new WordSearch(rows, cols, args[2], seed);
                 System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
-                System.out.println("ERROR: First two arguments have to be the integers");
-                System.out.println("specifying number of rows and columns.");
-                System.out.println("And the last argument has to be an integer");
-                System.out.println("specifying the seed of the puzzle.");
-                System.out.println();
+                printAllIntErr();
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
-                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly.");
-                System.out.println("Make sure the file exists.");
-                System.out.println();
+                printFileErr();
                 printInstructions();
                 System.exit(1);
             }
@@ -232,17 +236,11 @@ public class WordSearch {
                 puzzle = new WordSearch(rows, cols, args[2], seed);
                 System.out.println(puzzle.toString(true));
             } catch (NumberFormatException e) {
-                System.out.println("ERROR: First two arguments have to be the integers");
-                System.out.println("specifying number of rows and columns.");
-                System.out.println("And the last argument has to be an integer");
-                System.out.println("specifying the seed of the puzzle.");
-                System.out.println();
+                printAllIntErr();
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
-                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly.");
-                System.out.println("Make sure the file exists.");
-                System.out.println();
+                printFileErr();
                 printInstructions();
                 System.exit(1);
             }
