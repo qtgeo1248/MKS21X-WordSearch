@@ -224,7 +224,7 @@ public class WordSearch {
                 printInstructions();
                 System.exit(1);
             }
-        } else if (args.length == 5 && args[4] == "key") {
+        } else if (args.length == 5 && args[4].equals("key")) {
             try {
                 rows = Integer.parseInt(args[0]);
                 cols = Integer.parseInt(args[1]);
