@@ -58,7 +58,7 @@ public class WordSearch {
         }
     }
 
-    public String toString() { //REMEMBER SEED
+    public String toString() {
         String grid = "";
         for (int m = 0; m < data.length; m++) {
             grid += "|";
@@ -142,13 +142,15 @@ public class WordSearch {
     }
 
     public static void printInstructions() {
-        System.out.println("You need to put a desired number of rows, a");
-        System.out.println("desired number of columns, and the file name");
-        System.out.println("of the file which contains the words you desire");
-        System.out.println("immediately after \"java Driver\"");
-        System.out.println("It is optional to put a seed after it, and it is");
-        System.out.println("also optional to put a seed and the word \"key\"");
-        System.out.println("if you want a certain puzzle solution");
+        System.out.println("Directions:");
+        System.out.println("After the \"java WordSearch\", include the number");
+        System.out.println("of rows you want in the puzzle, then the number of");
+        System.out.println("columns, then the name of the text file that");
+        System.out.println("contains the words you want in the puzzle.");
+        System.out.println("It is optional to put a seed after it to get a");
+        System.out.println("particular puzzle.");
+        System.out.println("It is also optional to put a seed and the word \"key\"");
+        System.out.println("if you want a certain puzzle's solution.");
         System.out.println();
         System.out.println("Ex: java Driver 9 9 words.txt");
     }
@@ -161,12 +163,13 @@ public class WordSearch {
             System.out.println();
             printInstructions();
             System.exit(1);
-        } else if (args.length == 2) {
+        } else if (args.length == 3) {
             try {
                 rows = Integer.parseInt(args[0]);
                 cols = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
                 System.out.println("First two arguments have to be the numbers");
+                System.out.println();
                 printInstructions();
                 System.exit(1);
             }
