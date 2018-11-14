@@ -175,6 +175,7 @@ public class WordSearch {
     public static void main(String[] args) {
         int rows;
         int cols;
+        int seed;
         WordSearch puzzle;
 
         if (args.length <= 2) {
@@ -189,13 +190,35 @@ public class WordSearch {
                 puzzle = new WordSearch(rows, cols, args[2]);
                 System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
-                System.out.println("ERROR: First two arguments have to be the numbers");
+                System.out.println("ERROR: First two arguments have to be the integers");
+                System.out.println("specifying number of rows and columns");
                 System.out.println();
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
-                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly");
-                System.out.println("ERROR: Make sure the file exists");
+                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly.");
+                System.out.println("Make sure the file exists.");
+                System.out.println();
+                printInstructions();
+                System.exit(1);
+            }
+        } else if (args.length == 4) {
+            try {
+                rows = Integer.parseInt(args[0]);
+                cols = Integer.parseInt(args[1]);
+                seed = Integer.parseInt(args[3]);
+                puzzle = new WordSearch(rows, cols, args[2], seed);
+            } catch (NumberFormatException e) {
+                System.out.println("ERROR: First two arguments have to be the integers");
+                System.out.println("specifying number of rows and columns.");
+                System.out.println("And the last argument has to be an integer");
+                System.out.println("specifying the seed of the puzzle.");
+                System.out.println();
+                printInstructions();
+                System.exit(1);
+            } catch (FileNotFoundException e) {
+                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly.");
+                System.out.println("Make sure the file exists.");
                 System.out.println();
                 printInstructions();
                 System.exit(1);
