@@ -20,10 +20,11 @@ public class WordSearch {
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException();
         }
+        Random rng = new Random();
+        int randSeed = rng.nextInt();
         randgen = new Random();
         addAllWords();
     }
-
     public WordSearch(int rows, int cols, String fileName, int randSeed) {
         wordsToAdd = new ArrayList<String>();
         setData(rows, cols);
@@ -35,6 +36,7 @@ public class WordSearch {
         randgen = new Random(randSeed);
         addAllWords();
     }
+
     private void setData(int rows, int cols) {
         data = new char[rows][cols];
         for (int m = 0; m < data.length; m++) {
