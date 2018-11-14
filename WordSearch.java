@@ -14,6 +14,9 @@ public class WordSearch {
 
     public WordSearch(int rows, int cols, String fileName, int randSeed) throws FileNotFoundException {
         wordsToAdd = new ArrayList<String>();
+        if (rows <= 0 || cols <= 0) {
+            throw new IllegalArgumentException();
+        }
         setData(rows, cols);
         setWords(fileName);
         seed = randSeed;
@@ -174,29 +177,16 @@ public class WordSearch {
         if (args.length <= 2) {
             printInstructions();
             System.exit(1);
-        } else if (args.length == 3) {
+        } else if (args.length <= 4) {
             try {
                 rows = Integer.parseInt(args[0]);
                 cols = Integer.parseInt(args[1]);
-                Random rng = new Random();
-                int randSeed = Math.abs(rng.nextInt()) % 10000;
-                puzzle = new WordSearch(rows, cols, args[2], randSeed);
-                System.out.println(puzzle.toString(false));
-            } catch (NumberFormatException e) {
-                printInstructions();
-                System.exit(1);
-            } catch (FileNotFoundException e) {
-                printInstructions();
-                System.exit(1);
-            } catch (NegativeArraySizeException e) {
-                printInstructions();
-                System.exit(1);
-            }
-        } else if (args.length == 4) {
-            try {
-                rows = Integer.parseInt(args[0]);
-                cols = Integer.parseInt(args[1]);
-                seed = Integer.parseInt(args[3]);
+                if (args.length == 3) {
+                    Random rng = new Random();
+                    seed = Math.abs(rng.nextInt()) % 10000;
+                } else {
+                    seed = Integer.parseInt(args[3]);
+                }
                 puzzle = new WordSearch(rows, cols, args[2], seed);
                 System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
@@ -206,6 +196,9 @@ public class WordSearch {
                 printInstructions();
                 System.exit(1);
             } catch (NegativeArraySizeException e) {
+                printInstructions();
+                System.exit(1);
+            } catch (IllegalArgumentException e) {
                 printInstructions();
                 System.exit(1);
             }
