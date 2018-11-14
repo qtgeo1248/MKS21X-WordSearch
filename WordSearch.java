@@ -208,6 +208,29 @@ public class WordSearch {
                 cols = Integer.parseInt(args[1]);
                 seed = Integer.parseInt(args[3]);
                 puzzle = new WordSearch(rows, cols, args[2], seed);
+                System.out.println(puzzle.toString(false));
+            } catch (NumberFormatException e) {
+                System.out.println("ERROR: First two arguments have to be the integers");
+                System.out.println("specifying number of rows and columns.");
+                System.out.println("And the last argument has to be an integer");
+                System.out.println("specifying the seed of the puzzle.");
+                System.out.println();
+                printInstructions();
+                System.exit(1);
+            } catch (FileNotFoundException e) {
+                System.out.println("ERROR: File not found; could be in a different folder or spelled incorrectly.");
+                System.out.println("Make sure the file exists.");
+                System.out.println();
+                printInstructions();
+                System.exit(1);
+            }
+        } else if (args.length == 5 && args[4] == "key") {
+            try {
+                rows = Integer.parseInt(args[0]);
+                cols = Integer.parseInt(args[1]);
+                seed = Integer.parseInt(args[3]);
+                puzzle = new WordSearch(rows, cols, args[2], seed);
+                System.out.println(puzzle.toString(true));
             } catch (NumberFormatException e) {
                 System.out.println("ERROR: First two arguments have to be the integers");
                 System.out.println("specifying number of rows and columns.");
