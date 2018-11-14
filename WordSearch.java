@@ -202,13 +202,17 @@ public class WordSearch {
                 printInstructions();
                 System.exit(1);
             }
-        } else if (args.length == 5 && args[4].equals("key")) {
+        } else if (args.length >= 5) {
             try {
                 rows = Integer.parseInt(args[0]);
                 cols = Integer.parseInt(args[1]);
                 seed = Integer.parseInt(args[3]);
                 puzzle = new WordSearch(rows, cols, args[2], seed);
-                System.out.println(puzzle.toString(true));
+                if (args[4].equals(key)) {
+                    System.out.println(puzzle.toString(true));
+                } else {
+                    System.out.println(puzzle.toString(false));
+                }
             } catch (NumberFormatException e) {
                 printInstructions();
                 System.exit(1);
