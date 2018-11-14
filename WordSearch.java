@@ -208,7 +208,7 @@ public class WordSearch {
                 cols = Integer.parseInt(args[1]);
                 seed = Integer.parseInt(args[3]);
                 puzzle = new WordSearch(rows, cols, args[2], seed);
-                if (args[4].equals(key)) {
+                if (args[4].equals("key")) {
                     System.out.println(puzzle.toString(true));
                 } else {
                     System.out.println(puzzle.toString(false));
