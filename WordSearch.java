@@ -183,7 +183,7 @@ public class WordSearch {
                 cols = Integer.parseInt(args[1]);
                 if (args.length == 3) {
                     Random rng = new Random();
-                    seed = Math.abs(rng.nextInt()) % 10000;
+                    seed = Math.abs(rng.nextInt()) % 100000;
                 } else {
                     seed = Integer.parseInt(args[3]);
                 }
