@@ -152,6 +152,7 @@ public class WordSearch {
     }
 
     public static void printInstructions() {
+        System.out.println();
         System.out.println("Directions:");
         System.out.println("After the \"java WordSearch\", include the number");
         System.out.println("of rows you want in the puzzle, then the number of");
@@ -164,20 +165,6 @@ public class WordSearch {
         System.out.println();
         System.out.println("Ex: java Driver 10 10 words.txt");
     }
-    public static void print2ArgsIntErr() {
-        System.out.println("\nERROR: First two arguments have to be the integers");
-        System.out.println("specifying number of rows and columns\n");
-    }
-    public static void printFileErr() {
-        System.out.println("\nERROR: File not found; could be in a different folder or spelled incorrectly.");
-        System.out.println("Make sure the file exists.\n");
-    }
-    public static void printAllIntErr() {
-        System.out.println("\nERROR: First two arguments have to be the integers");
-        System.out.println("specifying number of rows and columns.");
-        System.out.println("And the last argument has to be an integer");
-        System.out.println("specifying the seed of the puzzle.\n");
-    }
     public static void main(String[] args) {
         int rows;
         int cols;
@@ -185,8 +172,6 @@ public class WordSearch {
         WordSearch puzzle;
 
         if (args.length <= 2) {
-            System.out.println("ERROR: You inputted an incorrect number of arguments");
-            System.out.println();
             printInstructions();
             System.exit(1);
         } else if (args.length == 3) {
@@ -198,11 +183,9 @@ public class WordSearch {
                 puzzle = new WordSearch(rows, cols, args[2], randSeed);
                 System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
-                print2ArgsIntErr();
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
-                printFileErr();
                 printInstructions();
                 System.exit(1);
             }
@@ -214,11 +197,9 @@ public class WordSearch {
                 puzzle = new WordSearch(rows, cols, args[2], seed);
                 System.out.println(puzzle.toString(false));
             } catch (NumberFormatException e) {
-                printAllIntErr();
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
-                printFileErr();
                 printInstructions();
                 System.exit(1);
             }
@@ -230,11 +211,9 @@ public class WordSearch {
                 puzzle = new WordSearch(rows, cols, args[2], seed);
                 System.out.println(puzzle.toString(true));
             } catch (NumberFormatException e) {
-                printAllIntErr();
                 printInstructions();
                 System.exit(1);
             } catch (FileNotFoundException e) {
-                printFileErr();
                 printInstructions();
                 System.exit(1);
             }
