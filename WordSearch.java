@@ -17,6 +17,9 @@ public class WordSearch {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException();
         }
+        if (randSeed < 0 || randSeed > 10000) {
+            throw new IllegalArgumentException();
+        }
         setData(rows, cols);
         setWords(fileName);
         seed = randSeed;
@@ -159,10 +162,10 @@ public class WordSearch {
         System.out.println("Directions:");
         System.out.println("After the \"java WordSearch\", include the number");
         System.out.println("of rows you want in the puzzle, then the number of");
-        System.out.println("columns, then the name of the text file that");
-        System.out.println("contains the words you want in the puzzle.");
+        System.out.println("columns (both have to be positive), then the name of");
+        System.out.println("the text file that contains the words you want in the puzzle.");
         System.out.println("It is optional to put a seed after it to get a");
-        System.out.println("particular puzzle.");
+        System.out.println("particular puzzle (has to be between 1 and 10000).");
         System.out.println("It is also optional to put a seed and the word \"key\"");
         System.out.println("if you want a certain puzzle's solution.");
         System.out.println();
