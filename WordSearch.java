@@ -225,6 +225,9 @@ public class WordSearch {
             } catch (NegativeArraySizeException e) {
                 printInstructions();
                 System.exit(1);
+            } catch (IllegalArgumentException e) {
+                printInstructions();
+                System.exit(1);
             }
         }
     }
